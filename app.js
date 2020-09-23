@@ -14,42 +14,39 @@ filterOption.addEventListener('click', filterTodo);
 //FUNCTIONS
 
 function createTodo(todo){
-//Create todo DIV
+
     const todoDiv = document.createElement('div');
     todoDiv.classList.add("todo");
-//Create li
+
     const newTodo = document.createElement('li');
     newTodo.innerText = todo;
     newTodo.classList.add('todo-item');
     todoDiv.appendChild(newTodo);
-//Check mark button
+
     const completedButton = document.createElement('button');
     completedButton.innerHTML = '<i class="fas fa-check"></i>';
     completedButton.classList.add("complete-btn");
     todoDiv.appendChild(completedButton);
-//Trash mark button
+
     const trashButton = document.createElement('button');
     trashButton.innerHTML = '<i class="fas fa-trash"></i>';
     trashButton.classList.add("trash-btn");
     todoDiv.appendChild(trashButton);
-//append div to list
+
     todoList.appendChild(todoDiv);
 }
 
 function addTodo(event){
-//preventing page from refreshiing
+
     event.preventDefault();
-//Add todo to localstorage
     saveLocalTodos(todoInput.value);
-//create todo list
     createTodo(todoInput.value);
-//Clear input value
     todoInput.value = '';
 }
 
 function deleteCheck(e){
     const item = e.target;
-//Delete todo
+
     if(item.classList[0]=== "trash-btn"){
         const todo = item.parentElement;
         //animation
@@ -59,7 +56,7 @@ function deleteCheck(e){
             todo.remove();
         });
     }
-//check Todo
+
     if(item.classList[0]=== "complete-btn"){
         item.parentElement.classList.toggle('completed');
     }
@@ -101,7 +98,6 @@ function checkLocalstorage(){
 }
 
 function saveLocalTodos(todo){
-//is local storage empty
     let todos;
     todos = checkLocalstorage(todos);
     todos.push(todo);
